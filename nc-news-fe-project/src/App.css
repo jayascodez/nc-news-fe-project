@@ -5,38 +5,29 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.nav-bar{
+  list-style: none;
+  display: inline-block;
+  text-align: center;
+  padding: 10px 40px ;
+  background-color: lightblue ;
+
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.articles-list{
+  border: 2px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  list-style: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.article-img{
+  max-height: 150px;
 }
 
-.card {
-  padding: 2em;
-}
+.article-ind{
+  border: 2px solid black;
+  box-sizing: border-box;
 
-.read-the-docs {
-  color: #888;
 }
