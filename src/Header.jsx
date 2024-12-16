@@ -3,6 +3,7 @@ import { Link } from "react-router";
 export const Header = () => {
     return (<> 
         <h1>Welcome to NC-News</h1>
+        <h2>Test</h2>
         <nav>
             <ul>
                 <Link to="/"><li className="nav-bar">Home </li></Link>
