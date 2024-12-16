@@ -5,7 +5,13 @@ const baseApi = axios.create({
 })
 
 export const getArticles = () => {
-    return baseApi.get("/articles").then((response) => {
-        return response.data 
+        return  baseApi.get(`/articles`).then((response) => {
+            return response.data
+        })
+}
+
+export const getArticleById = (article_id) => {
+    return baseApi.get(`/articles/${article_id}`).then((response) => {
+        return response.data
     })
 }

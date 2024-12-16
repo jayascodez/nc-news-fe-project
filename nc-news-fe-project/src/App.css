@@ -31,3 +31,7 @@
   box-sizing: border-box;
 
 }
+
+#comments-box{
+  background-color: lightpink;
+}
