@@ -22,9 +22,6 @@ export const Articles = () => {
                     <h3>{article.title}</h3>
                     <h4>Written by {article.author} on {article.created_at}</h4>
                     <img src={article.article_img_url} alt="article-image" className="article-img"></img>
-                    <button> 
-                        {/* onclick take to comments section of single article? */}
-                        Comments </button>
                 </li></Link>
             })}
         </ul>
