@@ -29,9 +29,16 @@
 .article-ind{
   border: 2px solid black;
   box-sizing: border-box;
+  width: 500px;
+  height: 300px;
 
 }
 
 #comments-box{
-  background-color: lightpink;
+  background-color: rgb(210, 171, 247);
+}
+
+.comments-list{
+  border: 1px solid darkred;
+  list-style: disc;
 }
