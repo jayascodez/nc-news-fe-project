@@ -7,6 +7,7 @@ import { Home } from './Home'
 import { Articles } from './Articles'
 import { AboutUs } from './AboutUs'
 import { Comments } from './Comments'
+import { SeachByTopic } from './SearchByTopic'
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/articles" element={<Articles loading={loading} setLoading={setLoading}/>}/>
         <Route path="/api/articles/:article_id" element = {<Articles loading={loading} setLoading={setLoading}/>}> Back to Articles</Route> 
         <Route path='/api/articles/:article_id"/comments' element={<Comments/>}/>
+        <Route path='/search' element={<SeachByTopic/>}/>
         <Route path="/about-us" element={<AboutUs/>}/>
       </Routes>
     </BrowserRouter>

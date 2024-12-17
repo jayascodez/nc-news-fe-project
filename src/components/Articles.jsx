@@ -47,8 +47,14 @@ export const Articles = ({loading, setLoading}) => {
 
     return (<>
         <h2>All articles</h2>
-        <Link/>
-        <button>Search by topic</button>
+
+        <Link to='/search'> <>
+        <input
+        type="text"
+        placeholder="search by topic..."/>
+        <button type="submit" >Search</button>
+    </></Link>
+
         <ul className="articles-list">
             {articles.map((article) => {
                 const convertedTime = new Date(article.created_at).toLocaleString()

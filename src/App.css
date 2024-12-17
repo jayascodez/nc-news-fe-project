@@ -45,5 +45,8 @@
 
 #voting{
   border: 2px solid darkblue;
+}
 
+.trending-topics{
+  list-style: none;
 }

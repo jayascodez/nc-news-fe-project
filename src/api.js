@@ -27,3 +27,9 @@ export const updateArticleVotes = (article_id, inc_votes) => {
         return response.data
     })
 }
+
+export const getTopics = () => {
+    return baseApi.get('/topics').then((response)=> {
+        return response.data
+    })
+}
