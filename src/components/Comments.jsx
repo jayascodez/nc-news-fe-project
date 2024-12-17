@@ -21,7 +21,7 @@ export const Comments = () => {
     }
 
     const handleShowMore = () => {
-        setShowMore(true)
+        setShowMore(!showMore)
     }
 
     const commentsShown = showMore ? comments : comments.slice(0,2)
@@ -34,9 +34,10 @@ export const Comments = () => {
                 <p>{comment.body}</p></li>
             </ol>
         })}
-        {comments.length > 3 && !showMore && (
-                <button onClick={handleShowMore}>Show More</button>
+        {comments.length > 2 && (
+                <button onClick={handleShowMore}>{showMore? "Show Less" : "Show More" }</button>
             )}
+
         <button>Write a comment </button>
     </>)
 }

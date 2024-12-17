@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { getArticles, getArticleById} from "../api"
 import { Link, useParams} from "react-router"
 import { Comments } from "./Comments"
+import { VoteOnArticle } from "./VoteOnArticle"
 
 export const Articles = ({loading, setLoading}) => {
     const [articles, setArticles] = useState([])
@@ -35,7 +36,9 @@ export const Articles = ({loading, setLoading}) => {
             <h4>Written by {singleArticle.author} on {convertedTime}</h4>
             <img src={singleArticle.article_img_url} alt={singleArticle.title} className="article-img"></img>
             <h4>{singleArticle.body}</h4>
-    
+            <div id="voting">
+                <VoteOnArticle votes={singleArticle.votes} article_id={singleArticle.article_id}/>
+            </div>
             <div id="comments-box">
                 <Comments/>
             </div>
@@ -44,8 +47,8 @@ export const Articles = ({loading, setLoading}) => {
 
     return (<>
         <h2>All articles</h2>
-        <h3>Click to read more</h3>
-        <button>Sort by topic</button>
+        <Link/>
+        <button>Search by topic</button>
         <ul className="articles-list">
             {articles.map((article) => {
                 const convertedTime = new Date(article.created_at).toLocaleString()
