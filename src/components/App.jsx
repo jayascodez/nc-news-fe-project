@@ -13,6 +13,7 @@ import { SeachByTopic } from './SearchByTopic'
 function App() {
 
   const [loading, setLoading] = useState(true)
+  const [articles, setArticles] = useState([])
 
   return (
     <>
@@ -20,10 +21,11 @@ function App() {
     <Header/>
       <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path="/articles" element={<Articles loading={loading} setLoading={setLoading}/>}/>
-        <Route path="/api/articles/:article_id" element = {<Articles loading={loading} setLoading={setLoading}/>}> Back to Articles</Route> 
-        <Route path='/api/articles/:article_id"/comments' element={<Comments/>}/>
-        <Route path='/search' element={<SeachByTopic/>}/>
+        <Route path="/articles" element={<Articles loading={loading} setLoading={setLoading} articles = {articles} setArticles={setArticles}/>}/>
+        <Route path="/articles/:article_id" element = {<Articles loading={loading} setLoading={setLoading} articles = {articles} setArticles={setArticles}/>}> Back to Articles</Route> 
+        <Route path='/articles/:article_id"/comments' element={<Comments/>}/>
+        <Route path='/search/' element={<SeachByTopic articles={articles} />}/>
+        <Route path='/search/:topic' element={<SeachByTopic articles={articles} />}/>
         <Route path="/about-us" element={<AboutUs/>}/>
       </Routes>
     </BrowserRouter>

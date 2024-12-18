@@ -49,4 +49,5 @@
 
 .trending-topics{
   list-style: none;
+  display: inline-flex;
 }
