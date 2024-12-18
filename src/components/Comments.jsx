@@ -1,7 +1,8 @@
 import { useEffect, useState} from "react"
 import { getComments } from "../api"
-import {useParams} from 'react-router'
+import {useNavigate, useParams} from 'react-router'
 import { PostComment } from "./PostComment"
+import { DeleteComment } from "./DeleteComment"
 
 export const Comments = () => {
     const [loadingComments, setLoadingComments] = useState(true)
@@ -37,6 +38,8 @@ export const Comments = () => {
            return <ol key={comment.comment_id} className="comments-list">
                 <li><h5>{comment.author} on {convertedTime}</h5>
                 <p>{comment.body}</p></li>
+                
+                {comment.author === "tickle122" && <><button id="delete-comment-button">Delete comment</button> <DeleteComment/></>}
             </ol>
         })}
         {comments.length > 2 && (
