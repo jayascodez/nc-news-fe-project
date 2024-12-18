@@ -36,7 +36,18 @@ export const getTopics = () => {
 
 export const postComment = (inputObject, article_id) => {
     return baseApi.post(`/articles/${article_id}/comments`, inputObject).then((response)=> {
-        console.log(response.data)
+        return response.data
+    })
+}
+
+export const deleteComment = (comment_id) => {
+    return baseApi.delete(`/comments/${comment_id}`).then((response)=>{
+        return response.data
+    })
+}
+
+export const getUsers = () => {
+    return baseApi.get("/users").then((response) => {
         return response.data
     })
 }

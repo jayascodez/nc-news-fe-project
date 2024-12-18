@@ -8,7 +8,7 @@ import { Articles } from './Articles'
 import { AboutUs } from './AboutUs'
 import { Comments } from './Comments'
 import { SeachByTopic } from './SearchByTopic'
-
+import { Profile } from './Profile'
 
 function App() {
 
@@ -27,6 +27,7 @@ function App() {
         <Route path='/search' element={<SeachByTopic articles={articles} />}/>
         <Route path='/search/:topic' element={<SeachByTopic articles={articles} />}/>
         <Route path="/about-us" element={<AboutUs/>}/>
+        <Route path="/profile" element={<Profile/>}/>
       </Routes>
     </BrowserRouter>
     </>
