@@ -51,3 +51,31 @@
   list-style: none;
   display: inline-flex;
 }
+
+.post-comment{
+  border: 2px solid red;
+}
+
+.write-comment-form{
+  border: 2px solid blue;
+  display: block;
+}
+
+.show-form-button{
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#submit-button:hover{
+  background-color: #4CAF50;
+  color: white;
+}
+
+.postcomment-error-msg{
+  color: red;
+}
+
+.sucess-post-msg{
+  color: green;
+  
+}

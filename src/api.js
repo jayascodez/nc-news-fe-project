@@ -33,3 +33,10 @@ export const getTopics = () => {
         return response.data
     })
 }
+
+export const postComment = (inputObject, article_id) => {
+    return baseApi.post(`/articles/${article_id}/comments`, inputObject).then((response)=> {
+        console.log(response.data)
+        return response.data
+    })
+}
