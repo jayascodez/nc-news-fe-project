@@ -21,12 +21,11 @@ export const DeleteComment = ({comment, onDelete}) => {
         })
     }
 
-    return (
-        <>
+    return (<>
             {deletedMsg.trim().length === 0 && comment.author === "tickle122" && (
                 <>
                     <button onClick={handleClick} id="delete-comment-button" disabled={isLoading}>
-                        {isLoading ? "Deleting..." : "Delete comment"}
+                        {isLoading ? "Deleting..." : "Delete"}
                     </button>
                     <p>{deletedMsg}</p>
                 </>

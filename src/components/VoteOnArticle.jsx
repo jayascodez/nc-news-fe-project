@@ -31,18 +31,18 @@ export const VoteOnArticle = ({votes, article_id}) => {
 
     if(userVoted){
         return <>
-        <p>{percentageArticleVotes()}</p>
+        <h3>{percentageArticleVotes()}</h3>
         <p>Overall Votes: {articleVotes}</p>
-        <p>Thanks for your vote!</p>
+        <h3>Thanks for your vote!</h3>
         </>
     }
 
     return(<>  
-    <p>Enjoying this article?</p>
-    <p> {percentageArticleVotes()}</p>
+    <h3>Enjoying this article?</h3>
+    <h3> {percentageArticleVotes()}</h3>
     <p>Overall votes: {articleVotes}</p>
-    <button onClick={()=>handleVotes(1)}>Like</button>
-    <button onClick={()=> handleVotes(-1)}>Dislike</button>   
+    <button className="like-button" onClick={()=>handleVotes(1)}>Like</button>
+    <button className="like-button" onClick={()=> handleVotes(-1)}>Dislike</button>   
     {error && <p>{error}</p>}
     </>)
 

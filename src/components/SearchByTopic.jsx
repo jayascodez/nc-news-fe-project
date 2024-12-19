@@ -52,7 +52,7 @@ export const SeachByTopic = () => {
         placeholder="search by topic..."
         onChange={handleChange}
         value={searchInput}/>
-        <button type="submit" onClick={handleSubmit}>Search</button>
+        <button type="submit" id="search-button" onClick={handleSubmit}>Search</button>
 
         <p>Search result:</p>
         {error!=="" ? 

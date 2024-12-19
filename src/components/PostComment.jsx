@@ -21,7 +21,7 @@ export const PostComment = ({article_id, onPost}) => {
             postComment(inputObject, article_id).then((response)=> {
                 onPost(response.comment)})
             setIsSending(false)
-            setSucessful("Comment posted")
+            setSucessful("Comment posted!")
             setInputObject({
                 "username": "tickle122",
                 "body": ""
@@ -42,7 +42,7 @@ export const PostComment = ({article_id, onPost}) => {
     <>
         <form className="write-comment-form" onSubmit={handleSubmit}>
           <label className="form-input">
-            New comment
+          Leave a comment:
             <input
               type="text"
               placeholder="Write your comment here..."
@@ -51,11 +51,11 @@ export const PostComment = ({article_id, onPost}) => {
               id="body"
             />
           </label>
-          {error && <div className="postcomment-error-msg">{error}</div>}
-          {sucessful && <div className="success-post-msg">{sucessful}</div>}
           <button type="submit" id="submit-button">
             Submit
           </button>
+          {error && <div className="postcomment-error-msg">{error}</div>}
+          {sucessful && <h4 className="success-post-msg">{sucessful}</h4>}
         </form>
     </>
     );

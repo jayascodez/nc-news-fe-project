@@ -41,21 +41,20 @@ export const Comments = () => {
     }
 
     return (<>
+    <h3>All Comments</h3>
      <div className="post-comment">
         <PostComment article_id={article_id} onPost={handlePost}/>
     </div>
-    <h4>All Comments</h4>
         {commentsShown.map((comment) => {
             const convertedTime = new Date(comment.created_at).toLocaleString()
            return <ol key={comment.comment_id} className="comments-list">
-                <li><h5>{comment.author} on {convertedTime}</h5>
+                <li><h5>{comment.author} on {convertedTime} 
+                    <DeleteComment comment={comment} onDelete={handleDelete}/></h5>
                 <p>{comment.body}</p></li>
-                
-            <DeleteComment comment={comment} onDelete={handleDelete}/>
             </ol>
         })}
         {comments.length > 2 && (
-                <button onClick={handleShowMore}>{showMore? "Show Less" : "Show More" }</button>
+                <button id="show-more-button" onClick={handleShowMore}>{showMore? "Show Less" : "Show More" }</button>
             )}
 
     </>)
