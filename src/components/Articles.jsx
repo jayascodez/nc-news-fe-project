@@ -54,6 +54,8 @@ export const Articles = ({loading, setLoading, articles, setArticles={setArticle
             <button type="submit" >Search</button>
         </Link>
 
+        <button>Sort-by</button>
+
         <ul className="articles-list">
             {articles.map((article) => {
                 const convertedTime = new Date(article.created_at).toLocaleString()

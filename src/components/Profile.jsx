@@ -44,7 +44,7 @@ export const Profile = () => {
                     return <li key={user.username}>
                         <h4>{user.name} - {user.username}</h4>
                         <img className="user-profile-pic" src ={user.avatar_url} alt="${user.name}s profile picture"></img>
-                        <button>conect</button>
+                        <button>connect</button>
                     </li>
                 })}
             </ul>

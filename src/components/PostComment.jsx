@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { postComment } from "../api"
 
-export const PostComment = ({article_id}) => {
+export const PostComment = ({article_id, onPost}) => {
     const [inputObject, setInputObject] = useState({
         "username": "tickle122",  //hardcoded as no functionality in the BE for authentication
         "body": ""
@@ -25,6 +25,7 @@ export const PostComment = ({article_id}) => {
             "username": "tickle122",
             "body": ""
         })
+        onPost();
     }}
 
     const handleChange = (e) => {
@@ -57,5 +58,5 @@ export const PostComment = ({article_id}) => {
           </button>
         </form>
     </>
-      );
-    };
+    );
+};
