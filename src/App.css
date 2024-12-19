@@ -7,9 +7,9 @@
 
 .nav-bar{
   list-style: none;
-  display: inline-block;
+  display: inline-flex;
   text-align: center;
-  padding: 10px 40px ;
+  padding: 10px 5% ;
   background-color: lightblue ;
 
 }
