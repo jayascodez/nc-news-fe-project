@@ -1,16 +1,18 @@
 import { useEffect, useState} from "react"
 import { getComments } from "../api"
-import { useParams, useNavigate} from 'react-router'
+import { useParams} from 'react-router'
 import { PostComment } from "./PostComment"
 import { DeleteComment } from "./DeleteComment"
 
 export const Comments = () => {
+
+    //new comments post optimistically but to the bottom of the comment chain, then after refresh will come to the top
+
     const [loadingComments, setLoadingComments] = useState(true)
     const [comments, setComments] = useState([])
     const [showMore, setShowMore] = useState(false)
 
     const {article_id} = useParams()
-    const navigate = useNavigate()
 
     useEffect(() => {
         setLoadingComments(true)
@@ -28,11 +30,11 @@ export const Comments = () => {
         setShowMore(!showMore)
     }
 
-    const commentsShown = showMore ? comments : comments.slice(0,2)
-
-    const handlePost = () => {
-       navigate(`/articles/${article_id}`) 
+    const handlePost = (newComment) => {
+        setComments((prevComments) => [...prevComments, newComment])
     };
+    
+    const commentsShown = showMore ? comments : comments.slice(0,2)
 
     const handleDelete = (commentId) => {
         setComments(comments.filter(comment => comment.comment_id !== commentId))

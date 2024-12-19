@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react"
 import { getTopics } from "../api"
-import { Link, useNavigate, useParams} from "react-router"
+import { Link, useParams} from "react-router"
 
-export const SeachByTopic = ({articles}) => {
+export const SeachByTopic = () => {
     const [searchInput, setSearchInput] = useState("")
     const [topics, setTopics] = useState([])
     const [filteredArticles, setFilteredArticles] = useState([])
     const [error, setError] = useState("")
 
     const {topic} = useParams()
-    const navigate = useNavigate()
+    // const {topic_query} = query
 
     const handleChange = (e) => {
         e.preventDefault()
@@ -19,16 +19,15 @@ export const SeachByTopic = ({articles}) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         setError("")
-        const byTopic = articles.filter((article)=> article.topic === searchInput)
+        // const byTopic = articles.filter((article)=> article.topic === searchInput)
         if(byTopic.length === 0){
             setError(`No articles about ${searchInput} found`)
         }
         setFilteredArticles(byTopic)
-        navigate(`/search/${searchInput}`)
     }
 
     useEffect(()=> {
-        getTopics().then((response)=>{
+        getTopics(topic_query).then((response)=>{
             setTopics(response.topics)
         })
         .catch((err)=> {

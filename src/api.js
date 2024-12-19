@@ -5,7 +5,7 @@ const baseApi = axios.create({
 })
 
 export const getArticles = () => {
-        return  baseApi.get(`/articles`).then((response) => {
+        return  baseApi.get("/articles").then((response) => {
             return response.data
         })
 }
@@ -28,7 +28,7 @@ export const updateArticleVotes = (article_id, inc_votes) => {
     })
 }
 
-export const getTopics = () => {
+export const getTopics = (topic_query) => {
     return baseApi.get('/topics').then((response)=> {
         return response.data
     })

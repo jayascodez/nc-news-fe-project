@@ -1,47 +1,24 @@
 import { useEffect, useState } from "react"
-import { getArticles, getArticleById} from "../api"
+import { getArticles}  from "../api"
 import { Link, useParams} from "react-router"
-import { Comments } from "./Comments"
-import { VoteOnArticle } from "./VoteOnArticle"
+import {SortByButton} from "./SortByButton"
 
-export const Articles = ({loading, setLoading, articles, setArticles={setArticles}}) => {
-    const [singleArticle, setSingleArticle] = useState([])
+export const Articles = () => {
+    const [articles, setArticles] = useState([])
+    const [loading, setLoading] = useState(true)
+
     const {article_id} = useParams()
 
     useEffect(() => {
         setLoading(true)
-        if(article_id){
-            getArticleById(article_id).then((response)=> {
-            setSingleArticle(response.article)
-            setLoading(false)
-        })}
-        else{
         getArticles().then((response) => {
             setArticles(response.articles)
-            setSingleArticle([])
             setLoading(false)
-        })}
+        })
     }, [article_id])
 
     if(loading){
         return <p>articles loading ...</p>
-    }
-
-    if(singleArticle.length != 0){
-        const convertedTime = new Date(singleArticle.created_at).toLocaleString()
-        return (<>
-            <h2>{singleArticle.title}</h2>
-            <h3>Article topic: {singleArticle.topic}</h3>
-            <h4>Written by {singleArticle.author} on {convertedTime}</h4>
-            <img src={singleArticle.article_img_url} alt={singleArticle.title} className="article-img"></img>
-            <h4>{singleArticle.body}</h4>
-            <div id="voting">
-                <VoteOnArticle votes={singleArticle.votes} article_id={singleArticle.article_id}/>
-            </div>
-            <div id="comments-box">
-                <Comments/>
-            </div>
-        </>)
     }
 
     return (<>
@@ -54,7 +31,7 @@ export const Articles = ({loading, setLoading, articles, setArticles={setArticle
             <button type="submit" >Search</button>
         </Link>
 
-        <button>Sort-by</button>
+        <SortByButton articles={articles}/>
 
         <ul className="articles-list">
             {articles.map((article) => {

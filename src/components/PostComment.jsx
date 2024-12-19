@@ -18,14 +18,14 @@ export const PostComment = ({article_id, onPost}) => {
         }
         else {setError("")
             setIsSending(true)
-        postComment(inputObject, article_id)
-        setSucessful("Comment posted")
-        setIsSending(false)
-        setInputObject({
-            "username": "tickle122",
-            "body": ""
-        })
-        onPost();
+            postComment(inputObject, article_id).then((response)=> {
+                onPost(response.comment)})
+            setIsSending(false)
+            setSucessful("Comment posted")
+            setInputObject({
+                "username": "tickle122",
+                "body": ""
+            })
     }}
 
     const handleChange = (e) => {

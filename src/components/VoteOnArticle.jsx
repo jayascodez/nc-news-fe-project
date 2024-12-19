@@ -1,4 +1,4 @@
-import { useState, useEffect} from "react"
+import { useState} from "react"
 import { updateArticleVotes } from "../api"
 
 //some work on percentage functionality needed
