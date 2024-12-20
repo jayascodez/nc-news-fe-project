@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { getUsers } from "../api"
 
-export const Profile = () => {
+export const Profile = ({loadingLottie}) => {
     const [users, setUsers] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null) 
@@ -18,11 +18,14 @@ export const Profile = () => {
             })
     }, [])
 
-    if (loading) {<p>Loading...</p> }
+    if (loading) {<p>Loading... {loadingLottie}</p> }
     if (error) {<p>{error}</p>}
 
     if (users.length === 0 || !users[0]) {
-        return <p>User data loading</p>}
+        return (<>
+        <p>User data loading</p>
+        {loadingLottie}
+        </>)}
 
     return (
         <>

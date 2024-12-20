@@ -12,7 +12,7 @@ export const VoteOnArticle = ({votes, article_id}) => {
 
     const percentageArticleVotes = () => {
         const totalVotes = articleVotes
-        return (totalVotes === 0 ? "no votes yet" : (Math.floor((articleLikes/totalVotes)*100))+"% liked this")
+        return (totalVotes === 0 ? "no votes yet" : (Math.floor((articleLikes/totalVotes)*100))+"% of voters liked this")
     }
 
     const handleVotes = (inc_votes) => {

@@ -5,7 +5,7 @@ import { useParams} from "react-router"
 import { getArticleById} from "../api"
 
 
-export const SingleArticle = () => {
+export const SingleArticle = ({loadingLottie}) => {
     const [singleArticle, setSingleArticle] = useState([])
     const [loading, setLoading] = useState(true)
 
@@ -20,7 +20,11 @@ export const SingleArticle = () => {
     }, [article_id])
 
     if(loading){
-        return <p>article loading ...</p>
+        return (<>
+        <p>article loading ...</p>
+        {loadingLottie}
+        </>)
+        
     }
 
     if(singleArticle.length != 0){
