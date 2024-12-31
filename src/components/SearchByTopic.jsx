@@ -1,15 +1,23 @@
-import { useEffect, useState } from "react"
-import { getArticles, getTopics } from "../api"
-import { Link, useParams, useSearchParams} from "react-router"
+import { useState } from "react"
 
-export const SearchByTopic = () => {
+export const SearchByTopic = ({setSearchParams}) => {
+    const [topic, setTopic] = useState("")
 
-    const {topicQuery} = useParams()
+    const handleSubmit = () => {
+        setSearchParams({topic})
+    }
+
+    const handleChange = (e) => {
+        setTopic(e.target.value)
+    }
 
     return (<>
         <input
+        type="text"
         placeholder="search by topic"
+        value={topic}
+        onChange={handleChange}
         />
-        <button type="submit"> Search</button>
+        <button type="submit" onClick={handleSubmit}> Search</button>
    </>)
 }

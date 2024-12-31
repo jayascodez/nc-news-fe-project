@@ -1,28 +1,31 @@
 import { useEffect, useState } from "react"
 import { getArticles}  from "../api"
-import { Link, useParams, useSearchParams} from "react-router"
+import { Link, useSearchParams} from "react-router"
 import { SearchByTopic } from "./SearchByTopic"
 
 export const Articles = ({loadingLottie}) => {
     const [articles, setArticles] = useState([])
-    const [sortByQuery, setSortByQuery] = useState("created_at")
-    const [orderQuery, setOrderQuery] = useState("DESC")
     const [isError, setIsError] = useState(null)
     const [loading, setLoading] = useState(true)
+
     const [searchParams, setSearchParams] = useSearchParams()
-    const {article_id} = useParams()
-    const {topicQuery} = useParams()
+
+    const [sort_by, setSort_by] = useState("created_at")
+    const [order_by, setOrder_by] = useState("DESC")
+
 
     useEffect(() => {
         setLoading(true);
-        getArticles(topicQuery, sortByQuery, orderQuery).then((response) => {
+        const topic = searchParams.get("topic")
+
+        getArticles(topic, sort_by, order_by).then((response) => {
             setArticles(response.articles)
             setLoading(false)
         })
         .catch((err)=> {
             setIsError("Failed to load articles")
         })
-    }, [article_id, topicQuery, sortByQuery, orderQuery])
+    }, [searchParams, sort_by, order_by])
 
     if(loading){
         return (<>
@@ -32,29 +35,32 @@ export const Articles = ({loadingLottie}) => {
     }
 
     const handleSortByChange = (e) => {
+        const name = e.target.name
         const value = e.target.value
-        setSortByQuery(value)
-        setSearchParams({...Object.fromEntries(searchParams), sortByQuery: value})
+        setSort_by(value)
+        setSearchParams({...Object.fromEntries(searchParams), [name]: value})
+        console.log(sort_by)
     }
 
     const handleOrderChange = (e) => {
+        const name = e.target.name
         const value = e.target.value
-        setOrderQuery(value)
-        setSearchParams({...Object.fromEntries(searchParams), orderQuery: value})
+        setOrder_by(value)
+        setSearchParams({...Object.fromEntries(searchParams), [name]: value})
+        console.log(order_by)
     }
-
 
     return (<>
         <h1>All articles</h1>
-        <p><SearchByTopic/> </p>
+        <p><SearchByTopic setSearchParams={setSearchParams}/> </p>
         <select
         id="sortBy-dropdown"
         onChange={handleSortByChange}
         name="sort_by"
-        value={sortByQuery}>
+        value={sort_by}>
             <option disabled>Sort By</option>
             <option value="created_at">Date</option>
-            <option value="comment_count">Comment Count</option>
+            <option value="comment_count">Comment Count NOT WORKING</option>
             <option value="votes">Votes</option>
         </select>
 
@@ -62,13 +68,15 @@ export const Articles = ({loadingLottie}) => {
         id="order-dropdown"
         onChange={handleOrderChange}
         name="order_by"
-        value={orderQuery}>
+        value={order_by}>
             <option disabled>Order</option>
             <option value="DESC"> Desc</option>
             <option value="ASC"> Asc</option>
         </select>
 
         <ul className="articles-list">
+            <p>You are reading "all / THIS TOPICS ARTICLES articles"</p>
+
             {articles.map((article) => {
                 const convertedTime = new Date(article.created_at).toLocaleString()
                 return (
