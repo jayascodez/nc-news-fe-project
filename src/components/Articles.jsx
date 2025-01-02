@@ -7,6 +7,7 @@ export const Articles = ({loadingLottie}) => {
     const [articles, setArticles] = useState([])
     const [isError, setIsError] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [topic, setTopic] = useState("")
 
     const [searchParams, setSearchParams] = useSearchParams()
 
@@ -23,7 +24,7 @@ export const Articles = ({loadingLottie}) => {
             setLoading(false)
         })
         .catch((err)=> {
-            setIsError("Failed to load articles")
+            setIsError("Failed to load articles: " + err.message)
         })
     }, [searchParams, sort_by, order_by])
 
@@ -34,12 +35,25 @@ export const Articles = ({loadingLottie}) => {
         </>)
     }
 
+    const handleBackToArticlesInError = () => {
+        setIsError(null)
+    }
+
+    if (isError) {
+        return (
+            <>
+                <p>{isError}</p>
+                <p> Try searching another topic... </p>
+                <button onClick={handleBackToArticlesInError}> Back to articles </button>
+            </>
+        );
+    }
+
     const handleSortByChange = (e) => {
         const name = e.target.name
         const value = e.target.value
         setSort_by(value)
         setSearchParams({...Object.fromEntries(searchParams), [name]: value})
-        console.log(sort_by)
     }
 
     const handleOrderChange = (e) => {
@@ -47,12 +61,13 @@ export const Articles = ({loadingLottie}) => {
         const value = e.target.value
         setOrder_by(value)
         setSearchParams({...Object.fromEntries(searchParams), [name]: value})
-        console.log(order_by)
     }
-
+       
     return (<>
-        <h1>All articles</h1>
-        <p><SearchByTopic setSearchParams={setSearchParams}/> </p>
+        <h1>
+        {topic.length === 0 ? "Looking at all articles" : `Looking at articles on ${topic}`}
+        </h1>
+        <p><SearchByTopic setSearchParams={setSearchParams} topic={topic} setTopic={setTopic}/> </p>
         <select
         id="sortBy-dropdown"
         onChange={handleSortByChange}
@@ -75,8 +90,6 @@ export const Articles = ({loadingLottie}) => {
         </select>
 
         <ul className="articles-list">
-            <p>You are reading "all / THIS TOPICS ARTICLES articles"</p>
-
             {articles.map((article) => {
                 const convertedTime = new Date(article.created_at).toLocaleString()
                 return (

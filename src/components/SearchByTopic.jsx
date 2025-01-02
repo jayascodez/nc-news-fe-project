@@ -1,7 +1,5 @@
-import { useState } from "react"
 
-export const SearchByTopic = ({setSearchParams}) => {
-    const [topic, setTopic] = useState("")
+export const SearchByTopic = ({setSearchParams, topic, setTopic}) => {
 
     const handleSubmit = () => {
         setSearchParams({topic})
