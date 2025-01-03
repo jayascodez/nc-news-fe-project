@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Comments } from "./Comments"
 import { VoteOnArticle } from "./VoteOnArticle"
-import { useParams} from "react-router"
+import { useNavigate, useParams} from "react-router"
 import { getArticleById} from "../api"
 
 
@@ -10,6 +10,7 @@ export const SingleArticle = ({loadingLottie}) => {
     const [loading, setLoading] = useState(true)
 
     const {article_id} = useParams()
+    const navigate = useNavigate()
 
     useEffect(() => {
         setLoading(true)
@@ -23,13 +24,17 @@ export const SingleArticle = ({loadingLottie}) => {
         return (<>
         <p>article loading ...</p>
         {loadingLottie}
-        </>)
-        
+        </>)}
+
+    const handleBackButton = () => {
+        setSingleArticle([])
+        navigate("/articles")
     }
 
     if(singleArticle.length != 0){
         const convertedTime = new Date(singleArticle.created_at).toLocaleString()
         return (<>
+        <button onClick={handleBackButton}>Back to all articles</button>
         <div className="single-article-card">
             <h2>{singleArticle.title}</h2>
             <h3>Article topic: {singleArticle.topic}</h3>

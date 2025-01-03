@@ -23,7 +23,7 @@ export const Profile = ({loadingLottie}) => {
 
     if (users.length === 0 || !users[0]) {
         return (<>
-        <p>User data loading</p>
+        <p>profile loading...</p>
         {loadingLottie}
         </>)}
 

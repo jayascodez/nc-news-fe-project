@@ -1,21 +1,20 @@
 
-export const SearchByTopic = ({setSearchParams, topic, setTopic}) => {
+export const SearchByTopic = ({setSearchParams}) => {
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const topic = e.target.topic.value.trim()
         setSearchParams({topic})
     }
 
-    const handleChange = (e) => {
-        setTopic(e.target.value)
-    }
-
     return (<>
-        <input
-        type="text"
-        placeholder="search by topic"
-        value={topic}
-        onChange={handleChange}
-        />
-        <button type="submit" onClick={handleSubmit}> Search</button>
-   </>)
+         <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    name="topic"
+                    placeholder="search by topic"
+                />
+                <button type="submit" >Search</button>
+            </form>
+    </>)
 }
